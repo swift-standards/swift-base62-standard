@@ -137,7 +137,7 @@ extension Base62_Standard {
 
         // Build result in little-endian order (LSB first), reverse at end
         var result: [UInt8] = []
-        result.reserveCapacity(bytes.count * 75 / 100 + 1) // log(62)/log(256) ≈ 0.74
+        result.reserveCapacity(bytes.count * 75 / 100 + 1)  // log(62)/log(256) ≈ 0.74
 
         for byte in bytes {
             guard let digitValue = alphabet.decode(byte) else { return nil }

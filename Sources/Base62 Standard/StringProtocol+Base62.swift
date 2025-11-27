@@ -55,7 +55,8 @@ extension String {
     /// String(base62: 42, using: .inverted)   // "G"
     /// String(base62: UInt64.max)             // "LygHa16AHYF"
     /// ```
-    public init<T: BinaryInteger>(base62 value: T, using alphabet: Base62_Standard.Alphabet = .default) where T.Magnitude: UnsignedInteger {
+    public init<T: BinaryInteger>(base62 value: T, using alphabet: Base62_Standard.Alphabet = .default)
+    where T.Magnitude: UnsignedInteger {
         self = value.base62(using: alphabet).encoded()
     }
 

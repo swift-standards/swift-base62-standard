@@ -6,6 +6,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("Error Tests")

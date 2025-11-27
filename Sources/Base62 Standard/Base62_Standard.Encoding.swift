@@ -42,7 +42,7 @@ extension Base62_Standard {
         guard value != 0 else { return [alphabet.encode(0)] }
 
         var result: [UInt8] = []
-        result.reserveCapacity(11) // UInt64.max needs ~11 chars
+        result.reserveCapacity(11)  // UInt64.max needs ~11 chars
 
         var remaining = value
         while remaining > 0 {
@@ -95,7 +95,7 @@ extension Base62_Standard {
 
         var source = Array(bytes)
         var result: [UInt8] = []
-        result.reserveCapacity(bytes.count * 137 / 100 + 1) // log(256)/log(62) ≈ 1.37
+        result.reserveCapacity(bytes.count * 137 / 100 + 1)  // log(256)/log(62) ≈ 1.37
 
         // Use index to track logical start (avoids O(n) removeFirst)
         var startIndex = 0
@@ -103,7 +103,7 @@ extension Base62_Standard {
         // Repeated division by 62
         while startIndex < source.count {
             var remainder: UInt = 0
-            var newStartIndex = source.count // Will find first non-zero
+            var newStartIndex = source.count  // Will find first non-zero
 
             for i in startIndex..<source.count {
                 let value = UInt(source[i]) + remainder * 256

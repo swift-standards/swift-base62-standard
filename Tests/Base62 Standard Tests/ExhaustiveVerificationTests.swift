@@ -6,6 +6,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("Exhaustive Verification Tests")
@@ -38,7 +39,7 @@ struct ExhaustiveVerificationTests {
             0, 1, 61, 62, 63,
             255, 256,
             3843, 3844,
-            UInt16.max - 1, UInt16.max
+            UInt16.max - 1, UInt16.max,
         ]
 
         for value in boundaries {
@@ -126,8 +127,8 @@ struct ExhaustiveVerificationTests {
 
     static let knownByteArrayEncodings: [([UInt8], String)] = [
         ([0], "0"), ([1], "1"), ([61], "z"), ([62], "10"), ([255], "47"),
-        ([1, 0], "48"),      // 256 = 4*62 + 8
-        ([0, 1], "01"),      // 1 with leading zero
+        ([1, 0], "48"),  // 256 = 4*62 + 8
+        ([0, 1], "01"),  // 1 with leading zero
         ([1, 0, 0], "H32"),  // 65536 = 17*62² + 3*62 + 2
         ([0, 0, 0], "000"),  // three zeros
     ]
@@ -164,8 +165,9 @@ struct ExhaustiveVerificationTests {
 
     static let crossAlphabetTestValues: [UInt64] = [0, 1, 61, 62, 255, 256, 65535, 1_000_000]
 
-    @Test("Integer decode is inverse of encode for all alphabets",
-          arguments: allAlphabets, crossAlphabetTestValues)
+    @Test(
+        "Integer decode is inverse of encode for all alphabets",
+        arguments: allAlphabets, crossAlphabetTestValues)
     func decodeIsInverseOfEncode(alphabet: Base62_Standard.Alphabet, value: UInt64) {
         let encoded = value.base62(using: alphabet)()
         let decoded = UInt64(base62Encoded: encoded, using: alphabet)
@@ -176,8 +178,9 @@ struct ExhaustiveVerificationTests {
         [], [0], [0, 0], [1], [255], [1, 0], [0, 1], [0, 0, 1], [255, 255, 255],
     ]
 
-    @Test("Byte array decode is inverse of encode for all alphabets",
-          arguments: allAlphabets, crossAlphabetByteArrays)
+    @Test(
+        "Byte array decode is inverse of encode for all alphabets",
+        arguments: allAlphabets, crossAlphabetByteArrays)
     func byteArrayDecodeIsInverse(alphabet: Base62_Standard.Alphabet, bytes: [UInt8]) {
         let encoded = bytes.base62(using: alphabet).encoded()
         let decoded = [UInt8](base62: encoded, using: alphabet)

@@ -6,6 +6,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("String Validation Tests")
@@ -23,7 +24,7 @@ struct StringValidationTests {
 
     @Test("Empty string is valid")
     func emptyStringValid() {
-        #expect("".base62() == "")
+        #expect("".base62()?.isEmpty == true)
         #expect("".base62.isValid)
     }
 
@@ -39,9 +40,9 @@ struct StringValidationTests {
     func invalidCharacters() {
         #expect("abc!".base62() == nil)
         #expect("hello world".base62() == nil)  // space
-        #expect("test-123".base62() == nil)     // hyphen
-        #expect("test_123".base62() == nil)     // underscore
-        #expect("test@123".base62() == nil)     // at sign
+        #expect("test-123".base62() == nil)  // hyphen
+        #expect("test_123".base62() == nil)  // underscore
+        #expect("test@123".base62() == nil)  // at sign
     }
 
     @Test("isValid returns false for invalid strings")

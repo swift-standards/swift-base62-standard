@@ -10,6 +10,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("Byte Validation Tests")
@@ -40,17 +41,17 @@ struct ByteValidationTests {
     @Test("Invalid bytes fail validation")
     func invalidBytes() {
         let invalidBytes: [UInt8] = [
-            0,                      // NUL
-            10,                     // newline
-            32,                     // space
+            0,  // NUL
+            10,  // newline
+            32,  // space
             UInt8(ascii: "!"),
             UInt8(ascii: "@"),
             UInt8(ascii: "#"),
             UInt8(ascii: "-"),
             UInt8(ascii: "_"),
-            127,                    // DEL
-            128,                    // high bit set
-            255
+            127,  // DEL
+            128,  // high bit set
+            255,
         ]
 
         for byte in invalidBytes {

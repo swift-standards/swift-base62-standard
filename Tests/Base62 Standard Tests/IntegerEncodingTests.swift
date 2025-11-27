@@ -6,6 +6,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("Integer Encoding Tests")
@@ -45,10 +46,10 @@ struct IntegerEncodingTests {
     func knownValueEncoding() {
         // Some well-known test values
         // Standard alphabet: 0-9 (0-9), A-Z (10-35), a-z (36-61)
-        #expect(42.base62() == "g")      // 42 = position 42, 42-36 = 6th lowercase = 'g'
-        #expect(100.base62() == "1c")    // 100 = 1*62 + 38 = "1" + 'c' (position 38)
-        #expect(1000.base62() == "G8")   // 1000 = 16*62 + 8 = 'G' (position 16) + "8"
-        #expect(10000.base62() == "2bI") // 10000 = 2*62² + 37*62 + 18 = "2" + 'b' + 'I'
+        #expect(42.base62() == "g")  // 42 = position 42, 42-36 = 6th lowercase = 'g'
+        #expect(100.base62() == "1c")  // 100 = 1*62 + 38 = "1" + 'c' (position 38)
+        #expect(1000.base62() == "G8")  // 1000 = 16*62 + 8 = 'G' (position 16) + "8"
+        #expect(10000.base62() == "2bI")  // 10000 = 2*62² + 37*62 + 18 = "2" + 'b' + 'I'
     }
 
     // MARK: - Large Values
@@ -66,7 +67,7 @@ struct IntegerEncodingTests {
             1_000_000_000,
             1_000_000_000_000,
             UInt64.max / 2,
-            UInt64.max
+            UInt64.max,
         ]
 
         for value in values {

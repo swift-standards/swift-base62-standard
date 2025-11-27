@@ -6,6 +6,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("Integer Decoding Tests")
@@ -54,7 +55,7 @@ struct IntegerDecodingTests {
         #expect(UInt8(base62Encoded: "48") == nil)  // 256
 
         // Value too large for UInt64
-        let tooLarge = "LygHa16AHYG" // UInt64.max + 1
+        let tooLarge = "LygHa16AHYG"  // UInt64.max + 1
         #expect(UInt64(base62Encoded: tooLarge) == nil)
     }
 

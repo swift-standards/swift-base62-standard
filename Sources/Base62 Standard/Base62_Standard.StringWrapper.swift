@@ -62,16 +62,16 @@ extension Base62_Standard {
             source.utf8.allSatisfy { alphabet.isValid($0) }
         }
 
-//        /// Decodes the Base62 string to an unsigned integer
-//        ///
-//        /// - Parameter type: Target integer type (can be inferred)
-//        /// - Returns: Decoded integer, or `nil` if invalid or overflow
-//        @inlinable
-//        public func decode<T: UnsignedInteger & FixedWidthInteger>(
-//            as type: T.Type = T.self
-//        ) -> T? {
-//            Base62_Standard.decode(Array(source.utf8), as: type, using: alphabet)
-//        }
+        //        /// Decodes the Base62 string to an unsigned integer
+        //        ///
+        //        /// - Parameter type: Target integer type (can be inferred)
+        //        /// - Returns: Decoded integer, or `nil` if invalid or overflow
+        //        @inlinable
+        //        public func decode<T: UnsignedInteger & FixedWidthInteger>(
+        //            as type: T.Type = T.self
+        //        ) -> T? {
+        //            Base62_Standard.decode(Array(source.utf8), as: type, using: alphabet)
+        //        }
 
         /// Decodes the Base62 string to an unsigned integer with detailed errors
         ///

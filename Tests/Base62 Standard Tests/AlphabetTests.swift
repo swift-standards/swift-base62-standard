@@ -6,6 +6,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("Alphabet Tests")
@@ -102,7 +103,7 @@ struct AlphabetTests {
         // Control characters
         #expect(alphabet.decode(0) == nil)
         #expect(alphabet.decode(10) == nil)  // newline
-        #expect(alphabet.decode(127) == nil) // DEL
+        #expect(alphabet.decode(127) == nil)  // DEL
     }
 
     @Test("isValid returns correct values")

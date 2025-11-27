@@ -5,9 +5,10 @@
 //  Tests that verify all README code examples compile and work correctly
 //
 
-import Testing
-@testable import Base62_Standard
 import INCITS_4_1986
+import Testing
+
+@testable import Base62_Standard
 
 @Suite("README Verification Tests")
 struct ReadmeVerificationTests {
@@ -17,8 +18,8 @@ struct ReadmeVerificationTests {
     @Test("Quick Start - Integer encoding")
     func quickStartIntegerEncoding() {
         // Encode integers
-        let encoded = 42.base62()           // "g"
-        let max = UInt64.max.base62()       // "LygHa16AHYF"
+        let encoded = 42.base62()  // "g"
+        let max = UInt64.max.base62()  // "LygHa16AHYF"
 
         #expect(encoded == "g")
         #expect(max == "LygHa16AHYF")
@@ -44,7 +45,7 @@ struct ReadmeVerificationTests {
     @Test("Quick Start - Byte array decoding")
     func quickStartByteArrayDecoding() {
         // Decode byte arrays
-        let decoded = [UInt8](base62: "4Wd") // [67, 247]
+        let decoded = [UInt8](base62: "4Wd")  // [67, 247]
 
         #expect(decoded == [67, 247])
     }
@@ -56,7 +57,7 @@ struct ReadmeVerificationTests {
         // Basic encoding
         #expect(42.base62() == "g")
         #expect(42.base62.encoded() == "g")
-        #expect(42.base62.encodedBytes() == [103]) // ASCII 'g'
+        #expect(42.base62.encodedBytes() == [103])  // ASCII 'g'
     }
 
     @Test("Integer Encoding - Different alphabets")
@@ -82,7 +83,7 @@ struct ReadmeVerificationTests {
         #expect(UInt64(base62Encoded: "g") == 42)
         #expect(UInt64(base62Encoded: "abc") == 140716)
         #expect(UInt64(base62Encoded: "!!") == nil)  // invalid
-        #expect(UInt8(base62Encoded: "ZZ") == nil)   // overflow
+        #expect(UInt8(base62Encoded: "ZZ") == nil)  // overflow
     }
 
     @Test("Integer Decoding - Throwing decode")
@@ -113,8 +114,8 @@ struct ReadmeVerificationTests {
     func byteArrayDecoding() {
         #expect([UInt8](base62: "H32") == [1, 0, 0])
         #expect([UInt8](base62: "001") == [0, 0, 1])
-        #expect([UInt8](base62: "") == [])         // empty
-        #expect([UInt8](base62: "!!") == nil)      // invalid
+        #expect([UInt8](base62: "") == [])  // empty
+        #expect([UInt8](base62: "!!") == nil)  // invalid
     }
 
     // MARK: - String Validation Examples
@@ -122,7 +123,7 @@ struct ReadmeVerificationTests {
     @Test("String Validation")
     func stringValidation() {
         #expect("abc123".base62() == "abc123")  // valid
-        #expect("abc!".base62() == nil)         // invalid character
+        #expect("abc!".base62() == nil)  // invalid character
         #expect("abc123".base62.isValid == true)
     }
 

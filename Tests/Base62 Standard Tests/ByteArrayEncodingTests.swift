@@ -6,6 +6,7 @@
 //
 
 import Testing
+
 @testable import Base62_Standard
 
 @Suite("Byte Array Encoding Tests")
@@ -16,7 +17,7 @@ struct ByteArrayEncodingTests {
     @Test("Empty array encodes to empty string")
     func emptyArrayEncoding() {
         let bytes: [UInt8] = []
-        #expect(bytes.base62() == "")
+        #expect(bytes.base62().isEmpty == true)
     }
 
     @Test("Empty string decodes to empty array")
