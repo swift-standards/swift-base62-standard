@@ -1,10 +1,10 @@
 //
-//  UInt8.Base62.Serializing.swift
+//  UInt8.Base62.Serializable.swift
 //  swift-base62-standard
 //
 //  Protocol for types with canonical Base62 byte-level transformations
 //
-//  Follows the pattern established by UInt8.ASCII.Serializing in INCITS_4_1986.
+//  Follows the pattern established by UInt8.ASCII.Serializable in INCITS_4_1986.
 //
 
 public import Standards
@@ -40,7 +40,7 @@ extension UInt8.Base62 {
     /// ## Example
     ///
     /// ```swift
-    /// struct ShortID: UInt8.Base62.Serializing {
+    /// struct ShortID: UInt8.Base62.Serializable {
     ///     let value: UInt64
     ///
     ///     init<Bytes: Collection>(base62 bytes: Bytes, in context: Void) throws(Error) where Bytes.Element == UInt8 {
@@ -59,7 +59,7 @@ extension UInt8.Base62 {
     /// let id = try ShortID("abc123")  // String parsing
     /// let str = String(id)            // String conversion
     /// ```
-    public protocol Serializing: UInt8.Streaming {
+    public protocol Serializable: UInt8.Serializable {
         /// The error type for parsing failures
         associatedtype Error: Swift.Error
 
@@ -92,19 +92,19 @@ extension UInt8.Base62 {
     }
 
     /// Marker protocol for RawRepresentable Base62 types
-    public protocol RawRepresentable: UInt8.Base62.Serializing, Swift.RawRepresentable {}
+    public protocol RawRepresentable: UInt8.Base62.Serializable, Swift.RawRepresentable {}
 }
 
 // MARK: - Default Implementations
 
-extension UInt8.Base62.Serializing {
+extension UInt8.Base62.Serializable {
     /// Default alphabet is standard
     public static var alphabet: Base62_Standard.Alphabet { .default }
 }
 
 // MARK: - UInt8.Streaming Default Implementation
 
-extension UInt8.Base62.Serializing {
+extension UInt8.Base62.Serializable {
     /// Default `UInt8.Streaming` implementation via `static var serialize`
     public func serialize<Buffer: RangeReplaceableCollection>(
         into buffer: inout Buffer
@@ -115,7 +115,7 @@ extension UInt8.Base62.Serializing {
 
 // MARK: - Context-Free Convenience
 
-extension UInt8.Base62.Serializing where Context == Void {
+extension UInt8.Base62.Serializable where Context == Void {
     /// Parse from canonical Base62 byte representation (context-free convenience)
     ///
     /// - Parameter bytes: The Base62 byte representation
@@ -145,18 +145,18 @@ extension StringProtocol {
     ///
     /// Composes through canonical byte representation:
     /// ```
-    /// Serializing → [UInt8] (Base62) → String (UTF-8 interpretation)
+    /// Serializable → [UInt8] (Base62) → String (UTF-8 interpretation)
     /// ```
     ///
-    /// - Parameter value: Any type conforming to UInt8.Base62.Serializing
-    public init<T: UInt8.Base62.Serializing>(_ value: T) {
+    /// - Parameter value: Any type conforming to UInt8.Base62.Serializable
+    public init<T: UInt8.Base62.Serializable>(_ value: T) {
         self = Self(decoding: T.serialize(value), as: UTF8.self)
     }
 }
 
 // MARK: - CustomStringConvertible
 
-extension UInt8.Base62.Serializing where Self: CustomStringConvertible {
+extension UInt8.Base62.Serializable where Self: CustomStringConvertible {
     /// Default CustomStringConvertible implementation via byte serialization
     public var description: String {
         String(decoding: Self.serialize(self), as: UTF8.self)
@@ -191,7 +191,7 @@ extension UInt8.Base62.RawRepresentable where Self.RawValue == [UInt8], Context 
 
 // MARK: - ExpressibleByStringLiteral
 
-extension UInt8.Base62.Serializing where Self: ExpressibleByStringLiteral, Context == Void {
+extension UInt8.Base62.Serializable where Self: ExpressibleByStringLiteral, Context == Void {
     /// Default ExpressibleByStringLiteral implementation
     ///
     /// **Warning**: Uses force-try. Will crash at runtime if the literal is invalid.
