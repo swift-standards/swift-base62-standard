@@ -57,7 +57,7 @@ let bytes: [UInt8] = [72, 101, 108, 108, 111]
 let base62 = bytes.base62()         // Base62 string
 
 // Decode byte arrays
-let decoded = [UInt8](base62: "4Wd") // [72, 101]
+let decoded = [UInt8](base62: "4Wd") // [67, 247]
 ```
 
 ## Usage Examples
@@ -85,7 +85,7 @@ String(base62: 42, using: .inverted) // "G"
 ```swift
 // Failable initializer
 UInt64(base62Encoded: "g")           // Optional(42)
-UInt64(base62Encoded: "abc")         // Optional(95818)
+UInt64(base62Encoded: "abc")         // Optional(140716)
 UInt64(base62Encoded: "!!")          // nil (invalid)
 UInt8(base62Encoded: "ZZ")           // nil (overflow)
 

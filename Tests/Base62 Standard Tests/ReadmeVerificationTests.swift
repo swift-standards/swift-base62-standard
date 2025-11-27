@@ -44,9 +44,9 @@ struct ReadmeVerificationTests {
     @Test("Quick Start - Byte array decoding")
     func quickStartByteArrayDecoding() {
         // Decode byte arrays
-        let decoded = [UInt8](base62: "4Wd") // [72, 101]
+        let decoded = [UInt8](base62: "4Wd") // [67, 247]
 
-        #expect(decoded == [72, 101])
+        #expect(decoded == [67, 247])
     }
 
     // MARK: - Integer Encoding Examples
@@ -80,7 +80,7 @@ struct ReadmeVerificationTests {
     func integerDecodingFailable() {
         // Failable initializer
         #expect(UInt64(base62Encoded: "g") == 42)
-        #expect(UInt64(base62Encoded: "abc") == 95818)
+        #expect(UInt64(base62Encoded: "abc") == 140716)
         #expect(UInt64(base62Encoded: "!!") == nil)  // invalid
         #expect(UInt8(base62Encoded: "ZZ") == nil)   // overflow
     }
