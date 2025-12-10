@@ -165,14 +165,14 @@ struct ReadmeVerificationTests {
     @Test("Single Byte Validation - isBase62Digit")
     func singleByteIsBase62Digit() {
         // Check if a byte is a valid Base62 digit
-        #expect(UInt8.ASCII.isBase62Digit(UInt8.ascii.A) == true)
-        #expect(UInt8.ASCII.isBase62Digit(UInt8.ascii.exclamationPoint) == false)
+        #expect(Binary.ASCII.isBase62Digit(UInt8.ascii.A) == true)
+        #expect(Binary.ASCII.isBase62Digit(UInt8.ascii.exclamationPoint) == false)
     }
 
     @Test("Single Byte Validation - base62 digit parsing")
     func singleByteDigitParsing() {
         // Parse Base62 digit to numeric value
-        #expect(UInt8.ASCII.base62(digit: UInt8.ascii.A) == 10)  // standard alphabet
-        #expect(UInt8.ASCII.base62(digit: UInt8.ascii.A, using: .gmp) == 0)  // GMP alphabet
+        #expect(Binary.ASCII.base62(digit: UInt8.ascii.A) == 10)  // standard alphabet
+        #expect(Binary.ASCII.base62(digit: UInt8.ascii.A, using: .gmp) == 0)  // GMP alphabet
     }
 }

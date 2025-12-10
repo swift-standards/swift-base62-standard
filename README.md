@@ -150,12 +150,12 @@ let custom = Base62_Standard.Alphabet(
 import INCITS_4_1986
 
 // Check if a byte is a valid Base62 digit
-UInt8.ASCII.isBase62Digit(UInt8.ascii.A)  // true
-UInt8.ASCII.isBase62Digit(UInt8.ascii.exclamationPoint)  // false
+Binary.ASCII.isBase62Digit(UInt8.ascii.A)  // true
+Binary.ASCII.isBase62Digit(UInt8.ascii.exclamationPoint)  // false
 
 // Parse Base62 digit to numeric value
-UInt8.ASCII.base62(digit: UInt8.ascii.A)  // 10 (standard alphabet)
-UInt8.ASCII.base62(digit: UInt8.ascii.A, using: .gmp)  // 0 (GMP alphabet)
+Binary.ASCII.base62(digit: UInt8.ascii.A)  // 10 (standard alphabet)
+Binary.ASCII.base62(digit: UInt8.ascii.A, using: .gmp)  // 0 (GMP alphabet)
 ```
 
 ## Related Packages
