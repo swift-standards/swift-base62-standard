@@ -1,16 +1,16 @@
 //
-//  UInt8.ASCII+Base62.swift
+//  Binary.ASCII+Base62.swift
 //  swift-base62-standard
 //
 //  Base62 digit parsing following INCITS_4_1986 patterns
 //
-//  Uses static methods on UInt8.ASCII to avoid conflicts with
+//  Uses static methods on Binary.ASCII to avoid conflicts with
 //  BinaryInteger.base62 (which returns IntegerWrapper).
 //
 
 public import INCITS_4_1986
 
-extension UInt8.ASCII {
+extension Binary.ASCII {
     // MARK: - Base62 Digit Parsing
 
     /// Parses a Base62 digit byte to its numeric value (0-61)
@@ -26,25 +26,25 @@ extension UInt8.ASCII {
     /// ## Usage
     ///
     /// ```swift
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.`0`)  // 0
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.`9`)  // 9
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.A)    // 10
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.Z)    // 35
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.a)    // 36
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.z)    // 61
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.exclamationPoint)  // nil
+    /// Binary.ASCII.base62(digit: UInt8.ascii.`0`)  // 0
+    /// Binary.ASCII.base62(digit: UInt8.ascii.`9`)  // 9
+    /// Binary.ASCII.base62(digit: UInt8.ascii.A)    // 10
+    /// Binary.ASCII.base62(digit: UInt8.ascii.Z)    // 35
+    /// Binary.ASCII.base62(digit: UInt8.ascii.a)    // 36
+    /// Binary.ASCII.base62(digit: UInt8.ascii.z)    // 61
+    /// Binary.ASCII.base62(digit: UInt8.ascii.exclamationPoint)  // nil
     /// ```
     ///
     /// ## Different Alphabets
     ///
     /// ```swift
     /// // GMP alphabet: A-Z, a-z, 0-9
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.A, using: .gmp)    // 0
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.`0`, using: .gmp)  // 52
+    /// Binary.ASCII.base62(digit: UInt8.ascii.A, using: .gmp)    // 0
+    /// Binary.ASCII.base62(digit: UInt8.ascii.`0`, using: .gmp)  // 52
     ///
     /// // Inverted alphabet: 0-9, a-z, A-Z
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.a, using: .inverted)  // 10
-    /// UInt8.ASCII.base62(digit: UInt8.ascii.A, using: .inverted)  // 36
+    /// Binary.ASCII.base62(digit: UInt8.ascii.a, using: .inverted)  // 10
+    /// Binary.ASCII.base62(digit: UInt8.ascii.A, using: .inverted)  // 36
     /// ```
     ///
     /// - Parameters:
@@ -68,9 +68,9 @@ extension UInt8.ASCII {
     /// ## Usage
     ///
     /// ```swift
-    /// UInt8.ASCII.isBase62Digit(UInt8.ascii.A)                 // true
-    /// UInt8.ASCII.isBase62Digit(UInt8.ascii.exclamationPoint)  // false
-    /// UInt8.ASCII.isBase62Digit(UInt8.ascii.hyphen)            // false
+    /// Binary.ASCII.isBase62Digit(UInt8.ascii.A)                 // true
+    /// Binary.ASCII.isBase62Digit(UInt8.ascii.exclamationPoint)  // false
+    /// Binary.ASCII.isBase62Digit(UInt8.ascii.hyphen)            // false
     /// ```
     ///
     /// - Parameters:

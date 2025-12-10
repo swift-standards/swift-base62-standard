@@ -4,7 +4,7 @@
 //
 //  Protocol for types with canonical Base62 byte-level transformations
 //
-//  Follows the pattern established by UInt8.ASCII.Serializable in INCITS_4_1986.
+//  Follows the pattern established by Binary.ASCII.Serializable in INCITS_4_1986.
 //
 
 public import Standards
@@ -62,7 +62,7 @@ extension UInt8.Base62 {
     /// let id = try ShortID("abc123")  // String parsing
     /// let str = String(id)            // String conversion
     /// ```
-    public protocol Serializable: UInt8.Serializable {
+    public protocol Serializable: Binary.Serializable {
         /// Serialize this value into a Base62 byte buffer
         ///
         /// Writes the Base62 byte representation of this value into the buffer.
@@ -126,13 +126,13 @@ extension UInt8.Base62.Serializable {
     public static var alphabet: Base62_Standard.Alphabet { .default }
 }
 
-// MARK: - UInt8.Serializable Conformance
+// MARK: - Binary.Serializable Conformance
 
 extension UInt8.Base62.Serializable {
-    /// Default `UInt8.Serializable` implementation via Base62 serialization
+    /// Default `Binary.Serializable` implementation via Base62 serialization
     ///
-    /// Bridges Base62 serialization to the base `UInt8.Serializable` protocol.
-    /// This enables Base62 types to be used anywhere `UInt8.Serializable` is expected.
+    /// Bridges Base62 serialization to the base `Binary.Serializable` protocol.
+    /// This enables Base62 types to be used anywhere `Binary.Serializable` is expected.
     @inlinable
     public static func serialize<Buffer: RangeReplaceableCollection>(
         _ serializable: Self,

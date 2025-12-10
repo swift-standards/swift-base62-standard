@@ -2,11 +2,11 @@
 //  ByteValidationTests.swift
 //  swift-base62-standard
 //
-//  Tests for single byte Base62 validation using static methods on UInt8.ASCII
+//  Tests for single byte Base62 validation using static methods on Binary.ASCII
 //
 //  Following the INCITS_4_1986 pattern:
-//  - UInt8.ASCII.base62(digit: byte) for digit parsing
-//  - UInt8.ASCII.isBase62Digit(byte) for validation
+//  - Binary.ASCII.base62(digit: byte) for digit parsing
+//  - Binary.ASCII.isBase62Digit(byte) for validation
 //
 
 import Testing
@@ -22,17 +22,17 @@ struct ByteValidationTests {
     func validBytes() {
         // Digits
         for byte in UInt8(ascii: "0")...UInt8(ascii: "9") {
-            #expect(UInt8.ASCII.isBase62Digit(byte), "Byte \(byte) should be valid")
+            #expect(Binary.ASCII.isBase62Digit(byte), "Byte \(byte) should be valid")
         }
 
         // Uppercase
         for byte in UInt8(ascii: "A")...UInt8(ascii: "Z") {
-            #expect(UInt8.ASCII.isBase62Digit(byte), "Byte \(byte) should be valid")
+            #expect(Binary.ASCII.isBase62Digit(byte), "Byte \(byte) should be valid")
         }
 
         // Lowercase
         for byte in UInt8(ascii: "a")...UInt8(ascii: "z") {
-            #expect(UInt8.ASCII.isBase62Digit(byte), "Byte \(byte) should be valid")
+            #expect(Binary.ASCII.isBase62Digit(byte), "Byte \(byte) should be valid")
         }
     }
 
@@ -55,8 +55,8 @@ struct ByteValidationTests {
         ]
 
         for byte in invalidBytes {
-            #expect(!UInt8.ASCII.isBase62Digit(byte), "Byte \(byte) should be invalid")
-            #expect(UInt8.ASCII.base62(digit: byte) == nil, "Byte \(byte) should have nil value")
+            #expect(!Binary.ASCII.isBase62Digit(byte), "Byte \(byte) should be invalid")
+            #expect(Binary.ASCII.base62(digit: byte) == nil, "Byte \(byte) should have nil value")
         }
     }
 
@@ -65,19 +65,19 @@ struct ByteValidationTests {
     @Test("Value extraction works for valid bytes")
     func valueExtraction() {
         // Standard alphabet
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: "0")) == 0)
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: "9")) == 9)
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: "A")) == 10)
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: "Z")) == 35)
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: "a")) == 36)
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: "z")) == 61)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: "0")) == 0)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: "9")) == 9)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: "A")) == 10)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: "Z")) == 35)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: "a")) == 36)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: "z")) == 61)
     }
 
     @Test("Value extraction returns nil for invalid bytes")
     func valueExtractionInvalid() {
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: "!")) == nil)
-        #expect(UInt8.ASCII.base62(digit: UInt8(ascii: " ")) == nil)
-        #expect(UInt8.ASCII.base62(digit: UInt8(0)) == nil)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: "!")) == nil)
+        #expect(Binary.ASCII.base62(digit: UInt8(ascii: " ")) == nil)
+        #expect(Binary.ASCII.base62(digit: UInt8(0)) == nil)
     }
 
     // MARK: - Different Alphabets
@@ -87,12 +87,12 @@ struct ByteValidationTests {
         let byteA = UInt8.ascii.A
 
         // Standard: A = 10
-        #expect(UInt8.ASCII.base62(digit: byteA, using: .standard) == 10)
+        #expect(Binary.ASCII.base62(digit: byteA, using: .standard) == 10)
 
         // Inverted: A = 36
-        #expect(UInt8.ASCII.base62(digit: byteA, using: .inverted) == 36)
+        #expect(Binary.ASCII.base62(digit: byteA, using: .inverted) == 36)
 
         // GMP: A = 0
-        #expect(UInt8.ASCII.base62(digit: byteA, using: .gmp) == 0)
+        #expect(Binary.ASCII.base62(digit: byteA, using: .gmp) == 0)
     }
 }
