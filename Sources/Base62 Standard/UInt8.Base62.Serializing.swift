@@ -7,7 +7,7 @@
 //  Follows the pattern established by Binary.ASCII.Serializable in INCITS_4_1986.
 //
 
-public import Standards
+public import Standard_Library_Extensions
 
 extension UInt8 {
     /// Base62 encoding namespace for protocols and types

@@ -14,15 +14,15 @@ let package = Package(
         .library(name: "Base62 Standard", targets: ["Base62 Standard"])
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-standards/swift-incits-4-1986", from: "0.6.3"),
-        .package(url: "https://github.com/swift-standards/swift-standards", from: "0.10.0"),
+        .package(path: "../swift-incits-4-1986"),
+        .package(path: "../../swift-primitives/swift-standard-library-extensions"),
     ],
     targets: [
         .target(
             name: "Base62 Standard",
             dependencies: [
                 .product(name: "INCITS 4 1986", package: "swift-incits-4-1986"),
-                .product(name: "Standards", package: "swift-standards"),
+                .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions"),
             ]
         ),
         .testTarget(

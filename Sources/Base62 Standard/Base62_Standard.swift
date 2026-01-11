@@ -48,7 +48,7 @@
 //  Created by Claude Code on behalf of the swift-standards project.
 //
 
-import Standards
+import Standard_Library_Extensions
 
 /// Base62 Encoding Standard namespace
 ///
