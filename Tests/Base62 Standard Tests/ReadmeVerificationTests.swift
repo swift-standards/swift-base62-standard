@@ -5,7 +5,7 @@
 //  Tests that verify all README code examples compile and work correctly
 //
 
-import INCITS_4_1986
+import ASCII
 import Testing
 
 @testable import Base62_Standard

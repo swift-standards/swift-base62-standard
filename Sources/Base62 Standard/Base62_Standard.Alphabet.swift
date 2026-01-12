@@ -9,7 +9,7 @@
 //  No closure overhead - tables stored directly with @inlinable methods.
 //
 
-import INCITS_4_1986
+import ASCII
 
 extension Base62_Standard {
     /// Base62 alphabet configuration with encode/decode lookup tables

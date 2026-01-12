@@ -8,7 +8,7 @@
 //  BinaryInteger.base62 (which returns IntegerWrapper).
 //
 
-public import INCITS_4_1986
+public import ASCII
 
 extension Binary.ASCII {
     // MARK: - Base62 Digit Parsing
