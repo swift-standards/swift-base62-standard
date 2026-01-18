@@ -16,7 +16,7 @@ let package = Package(
     dependencies: [
         .package(path: "../../swift-foundations/swift-ascii"),
         .package(path: "../../swift-primitives/swift-standard-library-extensions"),
-        .package(path: "../../swift-primitives/swift-binary-primitives"),
+        .package(path: "../../swift-primitives/swift-binary-primitives")
     ],
     targets: [
         .target(
@@ -24,12 +24,8 @@ let package = Package(
             dependencies: [
                 .product(name: "ASCII", package: "swift-ascii"),
                 .product(name: "Standard Library Extensions", package: "swift-standard-library-extensions"),
-                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
+                .product(name: "Binary Primitives", package: "swift-binary-primitives")
             ]
-        ),
-        .testTarget(
-            name: "Base62 Standard Tests",
-            dependencies: ["Base62 Standard"]
         )
     ],
     swiftLanguageModes: [.v6]
